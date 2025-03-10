@@ -1,26 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_init_philos.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mhoussas <mhoussas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/25 13:26:31 by mhoussas          #+#    #+#             */
-/*   Updated: 2025/03/10 14:44:22 by mhoussas         ###   ########.fr       */
+/*   Created: 2025/03/10 14:08:02 by mhoussas          #+#    #+#             */
+/*   Updated: 2025/03/10 14:44:33 by mhoussas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "header.h"
 
-int	main(int ac, char **av)
+t_philosophers	*ft_init_philos(char **av)
 {
 	t_philosophers	*philos;
 
-	if (!(ac == 5 || ac == 6))
-	{
-		ft_putendl_fd("!!! Invalide Number Of Arguments !!!", 2);
-		ft_exit(1);
-	}
-	philos = ft_init_philos(av + 1);
-	return (0);
+	philos = ft_malloc(sizeof(t_philosophers));
+	philos->number_of_philosophers = ft_atoi(av[0]);
+	philos->time_to_die = ft_atoi(av[1]);
+	philos->time_to_eat = ft_atoi(av[2]);
+	philos->time_to_sleep = ft_atoi(av[3]);
+	if (av[4])
+		philos->number_of_times_each_philosopher_must_eat = ft_atoi(av[4]);
+	else
+		philos->number_of_times_each_philosopher_must_eat = -1;
+	return (philos);
 }

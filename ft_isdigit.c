@@ -1,26 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_isdigit.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mhoussas <mhoussas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/25 13:26:31 by mhoussas          #+#    #+#             */
-/*   Updated: 2025/03/10 14:44:22 by mhoussas         ###   ########.fr       */
+/*   Created: 2024/10/22 09:11:55 by mhoussas          #+#    #+#             */
+/*   Updated: 2025/03/10 14:43:37 by mhoussas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "header.h"
 
-int	main(int ac, char **av)
+int	ft_isdigit(int c)
 {
-	t_philosophers	*philos;
-
-	if (!(ac == 5 || ac == 6))
-	{
-		ft_putendl_fd("!!! Invalide Number Of Arguments !!!", 2);
-		ft_exit(1);
-	}
-	philos = ft_init_philos(av + 1);
+	if (c > 47 && c < 58)
+		return (1);
 	return (0);
 }

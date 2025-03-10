@@ -1,26 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_putchar_fd.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mhoussas <mhoussas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/25 13:26:31 by mhoussas          #+#    #+#             */
-/*   Updated: 2025/03/10 14:44:22 by mhoussas         ###   ########.fr       */
+/*   Created: 2024/10/26 08:38:12 by mhoussas          #+#    #+#             */
+/*   Updated: 2025/03/10 13:59:53 by mhoussas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "header.h"
 
-int	main(int ac, char **av)
+void	ft_putchar_fd(char c, int fd)
 {
-	t_philosophers	*philos;
-
-	if (!(ac == 5 || ac == 6))
-	{
-		ft_putendl_fd("!!! Invalide Number Of Arguments !!!", 2);
-		ft_exit(1);
-	}
-	philos = ft_init_philos(av + 1);
-	return (0);
+	if (fd < 0)
+		return ;
+	write(fd, &c, 1);
 }

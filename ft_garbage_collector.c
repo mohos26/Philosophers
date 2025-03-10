@@ -1,26 +1,46 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_garbage_collector.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mhoussas <mhoussas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/25 13:26:31 by mhoussas          #+#    #+#             */
-/*   Updated: 2025/03/10 14:44:22 by mhoussas         ###   ########.fr       */
+/*   Created: 2025/01/30 13:38:16 by mhoussas          #+#    #+#             */
+/*   Updated: 2025/03/10 14:47:39 by mhoussas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "header.h"
 
-int	main(int ac, char **av)
+static void	ft_free(void *ptr, int flag)
 {
-	t_philosophers	*philos;
+	static void	*lst[INT_MAX];
+	static int	i;
+	int			j;
 
-	if (!(ac == 5 || ac == 6))
+	if (flag)
 	{
-		ft_putendl_fd("!!! Invalide Number Of Arguments !!!", 2);
-		ft_exit(1);
+		j = 0;
+		while (lst[j])
+			free(lst[j++]);
 	}
-	philos = ft_init_philos(av + 1);
-	return (0);
+	else
+		lst[i++] = ptr;
+}
+
+void	ft_exit(int status)
+{
+	ft_free(NULL, 1);
+	exit(status);
+}
+
+void	*ft_malloc(size_t size)
+{
+	void	*ptr;
+
+	ptr = malloc(size);
+	if (!ptr)
+		ft_exit(1);
+	ft_free(ptr, 0);
+	return (ptr);
 }
