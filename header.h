@@ -6,7 +6,7 @@
 /*   By: mhoussas <mhoussas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/25 13:29:25 by mhoussas          #+#    #+#             */
-/*   Updated: 2025/03/10 14:43:58 by mhoussas         ###   ########.fr       */
+/*   Updated: 2025/04/21 16:19:14 by mhoussas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,10 @@ void			ft_exit(int status);
 int				ft_isdigit(int c);
 
 /* src */
-t_philosophers	*ft_init_philos(char **av);
+int				ft_get_info(char **av, int i);
 int				ft_atoi(char *s);
+pthread_mutex_t	*ft_forks(int i);
+void			*ft_philosopher(void *n);
+long			ft_get_time(void);
 
 #endif
