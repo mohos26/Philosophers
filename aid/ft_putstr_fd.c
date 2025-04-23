@@ -1,46 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_garbage_collector.c                             :+:      :+:    :+:   */
+/*   ft_putstr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mhoussas <mhoussas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/30 13:38:16 by mhoussas          #+#    #+#             */
-/*   Updated: 2025/03/10 14:47:39 by mhoussas         ###   ########.fr       */
+/*   Created: 2024/10/26 08:40:12 by mhoussas          #+#    #+#             */
+/*   Updated: 2025/04/23 15:10:19 by mhoussas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "header.h"
+#include "../header.h"
 
-static void	ft_free(void *ptr, int flag)
+void	ft_putstr_fd(char *s, int fd)
 {
-	static void	*lst[INT_MAX];
-	static int	i;
-	int			j;
-
-	if (flag)
-	{
-		j = 0;
-		while (lst[j])
-			free(lst[j++]);
-	}
-	else
-		lst[i++] = ptr;
-}
-
-void	ft_exit(int status)
-{
-	ft_free(NULL, 1);
-	exit(status);
-}
-
-void	*ft_malloc(size_t size)
-{
-	void	*ptr;
-
-	ptr = malloc(size);
-	if (!ptr)
-		ft_exit(1);
-	ft_free(ptr, 0);
-	return (ptr);
+	if (!s || fd < 0)
+		return ;
+	while (*s)
+		ft_putchar_fd(*s++, fd);
 }

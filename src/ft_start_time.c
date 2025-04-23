@@ -1,32 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_forks.c                                         :+:      :+:    :+:   */
+/*   ft_start_time.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mhoussas <mhoussas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/21 16:09:19 by mhoussas          #+#    #+#             */
-/*   Updated: 2025/04/21 16:10:02 by mhoussas         ###   ########.fr       */
+/*   Created: 2025/04/22 11:12:53 by mhoussas          #+#    #+#             */
+/*   Updated: 2025/04/23 15:10:19 by mhoussas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "header.h"
+#include "../header.h"
 
-pthread_mutex_t	*ft_forks(int i)
+long	ft_start(int flag)
 {
-	static pthread_mutex_t	fork[200];
-	int			j;
+	static long	time;
 
-	if (i == -1)
-	{
-		j = 0;
-		while (j < ft_get_info(NULL, 2))
-		{
-			pthread_mutex_init(&fork[j], NULL);
-			j++;
-		}
-		return (NULL);
-	}
-	return (&fork[i]);
+	if (!flag)
+		time = ft_get_time();
+	return (time);
 }
-

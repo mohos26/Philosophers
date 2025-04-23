@@ -1,27 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_philosopher.c                                   :+:      :+:    :+:   */
+/*   ft_strlen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mhoussas <mhoussas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/21 16:17:21 by mhoussas          #+#    #+#             */
-/*   Updated: 2025/04/21 16:29:27 by mhoussas         ###   ########.fr       */
+/*   Created: 2024/10/22 09:52:04 by mhoussas          #+#    #+#             */
+/*   Updated: 2025/04/23 15:10:19 by mhoussas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "header.h"
+#include "../header.h"
 
-
-void	*ft_philosopher(void *n)
+size_t	ft_strlen(const char *s)
 {
-	int		id;
-	int		left;
-	int		rigth;
-	long	start;
+	size_t	lenght;
 
-	id = *(int *)n;
-	left = id;
-	rigth = (id + 1) % ft_get_info(NULL, 2);
-	ft_printf("%ld %d is thinking\n", )
+	lenght = 0;
+	while (s && *s++)
+		lenght++;
+	return (lenght);
 }

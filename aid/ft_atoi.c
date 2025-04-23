@@ -6,11 +6,11 @@
 /*   By: mhoussas <mhoussas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/10 14:17:40 by mhoussas          #+#    #+#             */
-/*   Updated: 2025/03/10 14:49:30 by mhoussas         ###   ########.fr       */
+/*   Updated: 2025/04/23 17:57:49 by mhoussas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "header.h"
+#include "../header.h"
 
 int	ft_is_number(char *s)
 {
@@ -41,10 +41,7 @@ int	ft_atoi(char *s)
 	int	result;
 
 	if (!ft_is_number(s))
-	{
-		ft_putendl_fd("!!! Invalive Number !!!", 2);
-		ft_exit(1);
-	}
+		return (-1);
 	while (*s == 32)
 		s++;
 	result = 0;

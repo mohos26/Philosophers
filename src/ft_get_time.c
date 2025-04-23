@@ -1,20 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putchar_fd.c                                    :+:      :+:    :+:   */
+/*   ft_get_time.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mhoussas <mhoussas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/26 08:38:12 by mhoussas          #+#    #+#             */
-/*   Updated: 2025/03/10 13:59:53 by mhoussas         ###   ########.fr       */
+/*   Created: 2025/04/21 16:18:50 by mhoussas          #+#    #+#             */
+/*   Updated: 2025/04/23 15:10:19 by mhoussas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "header.h"
+#include "../header.h"
 
-void	ft_putchar_fd(char c, int fd)
+long	ft_get_time(void)
 {
-	if (fd < 0)
-		return ;
-	write(fd, &c, 1);
+	struct timeval	time;
+
+	gettimeofday(&time, NULL);
+	return (time.tv_sec * 1000 + time.tv_usec / 1000);
 }
