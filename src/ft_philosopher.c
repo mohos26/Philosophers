@@ -6,7 +6,7 @@
 /*   By: mhoussas <mhoussas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/21 16:17:21 by mhoussas          #+#    #+#             */
-/*   Updated: 2025/04/23 19:10:32 by mhoussas         ###   ########.fr       */
+/*   Updated: 2025/04/24 18:58:40 by mhoussas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,9 @@ void	*ft_philosopher(void *n)
 	left = id;
 	rigth = (id + 1) % ft_get_info(NULL, 1);
 	start = ft_get_time();
+	pthread_mutex_lock(ft_meal_lock(id));
+	ft_last_meal(id, start, 1);
+	pthread_mutex_unlock(ft_meal_lock(id));
 	while (ft_get_info(NULL, 5) == -1 || i < ft_get_info(NULL, 5))
 	{
 		ft_print(id, 1);
@@ -86,6 +89,9 @@ void	*ft_philosopher(void *n)
 		pthread_mutex_unlock(ft_forks(rigth));
 		pthread_mutex_unlock(ft_forks(left));
 		start = ft_get_time();
+		pthread_mutex_lock(ft_meal_lock(id));
+		ft_last_meal(id, start, 1);
+		pthread_mutex_unlock(ft_meal_lock(id));
 		ft_print(id, 4);
 		usleep(ft_get_info(NULL, 4) * 1000);
 		i++;

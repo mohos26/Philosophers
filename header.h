@@ -6,7 +6,7 @@
 /*   By: mhoussas <mhoussas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/25 13:29:25 by mhoussas          #+#    #+#             */
-/*   Updated: 2025/04/23 19:10:37 by mhoussas         ###   ########.fr       */
+/*   Updated: 2025/04/24 18:26:00 by mhoussas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,5 +31,8 @@ pthread_mutex_t	*ft_forks(int i);
 void			*ft_philosopher(void *n);
 long			ft_get_time(void);
 long			ft_start(int flag);
+void			*ft_monitor(void *arg);
+pthread_mutex_t	*ft_meal_lock(int flag);
+int				ft_last_meal(int id, int n, int flag);
 
 #endif
