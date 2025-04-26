@@ -1,21 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_get_time.c                                      :+:      :+:    :+:   */
+/*   ft_isdigit.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mhoussas <mhoussas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/21 16:18:50 by mhoussas          #+#    #+#             */
-/*   Updated: 2025/04/23 15:10:19 by mhoussas         ###   ########.fr       */
+/*   Created: 2024/10/22 09:11:55 by mhoussas          #+#    #+#             */
+/*   Updated: 2025/04/26 19:58:35 by mhoussas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../header.h"
 
-long	ft_get_time(void)
+int	ft_isdigit(int c)
 {
-	struct timeval	time;
-
-	gettimeofday(&time, NULL);
-	return (time.tv_sec * 1000 + time.tv_usec / 1000);
+	if (c > 47 && c < 58)
+		return (1);
+	return (0);
 }

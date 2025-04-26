@@ -1,21 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putendl_fd.c                                    :+:      :+:    :+:   */
+/*   ft_putchar_fd.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mhoussas <mhoussas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/26 08:45:46 by mhoussas          #+#    #+#             */
-/*   Updated: 2025/04/23 15:10:19 by mhoussas         ###   ########.fr       */
+/*   Created: 2024/10/26 08:38:12 by mhoussas          #+#    #+#             */
+/*   Updated: 2025/04/26 19:58:39 by mhoussas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../header.h"
 
-void	ft_putendl_fd(char *s, int fd)
+void	ft_putchar_fd(char c, int fd)
 {
-	if (!s || fd < 0)
+	if (fd < 0)
 		return ;
-	ft_putstr_fd(s, fd);
-	ft_putchar_fd('\n', fd);
+	write(fd, &c, 1);
 }

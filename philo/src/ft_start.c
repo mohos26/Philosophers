@@ -1,20 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putchar_fd.c                                    :+:      :+:    :+:   */
+/*   ft_start.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mhoussas <mhoussas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/26 08:38:12 by mhoussas          #+#    #+#             */
-/*   Updated: 2025/04/23 15:10:19 by mhoussas         ###   ########.fr       */
+/*   Created: 2025/04/26 10:11:39 by mhoussas          #+#    #+#             */
+/*   Updated: 2025/04/26 19:58:15 by mhoussas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../header.h"
 
-void	ft_putchar_fd(char c, int fd)
+long	ft_start(int flag)
 {
-	if (fd < 0)
-		return ;
-	write(fd, &c, 1);
+	static long	time;
+
+	if (!flag)
+		time = ft_get_time();
+	return (time);
 }

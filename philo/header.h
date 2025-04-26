@@ -5,34 +5,41 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: mhoussas <mhoussas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/25 13:29:25 by mhoussas          #+#    #+#             */
-/*   Updated: 2025/04/24 18:26:00 by mhoussas         ###   ########.fr       */
+/*   Created: 2025/04/25 11:29:40 by mhoussas          #+#    #+#             */
+/*   Updated: 2025/04/26 20:03:07 by mhoussas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef HEADER_H
 
 # define HEADER_H
-
 # include <libc.h>
 # include <pthread.h>
 
-/* aid files*/
-void			ft_putchar_fd(char c, int fd);
-void			ft_putendl_fd(char *s, int fd);
-void			ft_putstr_fd(char *s, int fd);
-int				ft_isdigit(int c);
-size_t			ft_strlen(const char *s);
+typedef struct s_all
+{
+	int				number_philo;
+	int				time_die;
+	int				time_eat;
+	int				time_sleep;
+	int				number_philo_must_eat;
+	pthread_mutex_t	*forks;
+	long			last_meal[200];
+	pthread_mutex_t	meal_mutex;
+	pthread_t		*philos;
+	pthread_t		*monitor;
+}					t_all;
 
-/* src */
-int				ft_get_info(char **av, int i);
-int				ft_atoi(char *s);
-pthread_mutex_t	*ft_forks(int i);
-void			*ft_philosopher(void *n);
-long			ft_get_time(void);
-long			ft_start(int flag);
-void			*ft_monitor(void *arg);
-pthread_mutex_t	*ft_meal_lock(int flag);
-int				ft_last_meal(int id, int n, int flag);
+int		ft_atoi(char *s);
+t_all	*ft_get_info(char **av);
+void	ft_putstr_fd(char *s, int fd);
+t_all	*ft_get_arg(t_all *arg);
+long	ft_get_time(void);
+long	ft_start(int flag);
+int		ft_isdigit(int c);
+void	ft_putendl_fd(char *s, int fd);
+void	*ft_philos(void *n);
+void	ft_putchar_fd(char c, int fd);
+void	*ft_monitor(void *data);
 
 #endif

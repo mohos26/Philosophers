@@ -1,20 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isdigit.c                                       :+:      :+:    :+:   */
+/*   ft_get_args.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mhoussas <mhoussas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/22 09:11:55 by mhoussas          #+#    #+#             */
-/*   Updated: 2025/04/23 15:10:19 by mhoussas         ###   ########.fr       */
+/*   Created: 2025/04/26 10:04:10 by mhoussas          #+#    #+#             */
+/*   Updated: 2025/04/26 19:57:56 by mhoussas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../header.h"
 
-int	ft_isdigit(int c)
+t_all	*ft_get_arg(t_all *arg)
 {
-	if (c > 47 && c < 58)
-		return (1);
-	return (0);
+	static t_all	*res;
+
+	if (arg)
+		res = arg;
+	return (res);
 }

@@ -1,31 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_forks.c                                         :+:      :+:    :+:   */
+/*   ft_putstr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mhoussas <mhoussas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/21 16:09:19 by mhoussas          #+#    #+#             */
-/*   Updated: 2025/04/23 15:10:19 by mhoussas         ###   ########.fr       */
+/*   Created: 2024/10/26 08:40:12 by mhoussas          #+#    #+#             */
+/*   Updated: 2025/04/26 19:58:44 by mhoussas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../header.h"
 
-pthread_mutex_t	*ft_forks(int i)
+void	ft_putstr_fd(char *s, int fd)
 {
-	static pthread_mutex_t	fork[200];
-	int						j;
-
-	if (i == -1)
-	{
-		j = 0;
-		while (j < ft_get_info(NULL, 1))
-		{
-			pthread_mutex_init(&fork[j], NULL);
-			j++;
-		}
-		return (NULL);
-	}
-	return (&fork[i]);
+	if (!s || fd < 0)
+		return ;
+	while (*s)
+		ft_putchar_fd(*s++, fd);
 }
