@@ -6,7 +6,7 @@
 /*   By: mhoussas <mhoussas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/25 11:31:36 by mhoussas          #+#    #+#             */
-/*   Updated: 2025/04/26 20:03:45 by mhoussas         ###   ########.fr       */
+/*   Updated: 2025/04/29 15:51:46 by mhoussas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@ static void	ft_aid(t_all *arg)
 	pthread_join(monitor, NULL);
 	while (i < arg->number_philo)
 		pthread_join(arg->philos[i++], NULL);
+	pthread_detach(monitor);
 	i = 0;
 	while (i < arg->number_philo)
 		pthread_mutex_destroy(&arg->forks[i++]);
