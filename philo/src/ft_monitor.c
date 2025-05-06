@@ -6,7 +6,7 @@
 /*   By: mhoussas <mhoussas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/26 11:43:57 by mhoussas          #+#    #+#             */
-/*   Updated: 2025/04/29 15:32:33 by mhoussas         ###   ########.fr       */
+/*   Updated: 2025/05/05 19:57:11 by mhoussas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,11 +42,19 @@ void	*ft_monitor(void *data)
 		i = 0;
 		while (flag && i < arg->number_philo)
 		{
+			pthread_mutex_lock(&arg->finish_mutex);
+			if (arg->finish)
+			{
+				pthread_mutex_unlock(&arg->finish_mutex);
+				return (NULL);
+			}
+			pthread_mutex_unlock(&arg->finish_mutex);
 			pthread_mutex_lock(&arg->meal_mutex);
 			flag = ft_aid(arg, i);
 			pthread_mutex_unlock(&arg->meal_mutex);
 			i++;
 		}
+		usleep(1000);
 	}
 	return (NULL);
 }

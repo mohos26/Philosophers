@@ -6,7 +6,7 @@
 /*   By: mhoussas <mhoussas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/25 11:29:40 by mhoussas          #+#    #+#             */
-/*   Updated: 2025/04/26 20:03:07 by mhoussas         ###   ########.fr       */
+/*   Updated: 2025/05/05 19:28:32 by mhoussas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,8 @@ typedef struct s_all
 	pthread_mutex_t	meal_mutex;
 	pthread_t		*philos;
 	pthread_t		*monitor;
+	pthread_mutex_t	finish_mutex;
+	int				finish;
 }					t_all;
 
 int		ft_atoi(char *s);

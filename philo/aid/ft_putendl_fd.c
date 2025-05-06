@@ -6,7 +6,7 @@
 /*   By: mhoussas <mhoussas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/26 08:45:46 by mhoussas          #+#    #+#             */
-/*   Updated: 2025/05/04 11:37:06 by mhoussas         ###   ########.fr       */
+/*   Updated: 2025/05/05 16:22:32 by mhoussas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,5 +16,6 @@ void	ft_putendl_fd(char *s, int fd)
 {
 	if (!s || fd < 0)
 		return ;
-	ft_putstr_fd(ft_strjoin(s, "\n"), fd);
+	ft_putstr_fd(s, 1);
+	ft_putstr_fd("\n", 1);
 }

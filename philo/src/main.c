@@ -6,7 +6,7 @@
 /*   By: mhoussas <mhoussas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/25 11:31:36 by mhoussas          #+#    #+#             */
-/*   Updated: 2025/05/04 11:03:53 by mhoussas         ###   ########.fr       */
+/*   Updated: 2025/05/05 19:39:30 by mhoussas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,17 +51,11 @@ static void	ft_aid(t_all *arg)
 		pthread_mutex_destroy(&arg->forks[i++]);
 }
 
-void	f()
-{
-	system("leaks philo");
-}
-
 int	main(int ac, char **av)
 {
 	t_all		*arg;
 	int			i;
 
-	atexit(f);
 	if (!(ac == 5 || ac == 6))
 		return (ft_putendl_fd("!!! Invalide Number Of Arguments !!!", 2), 1);
 	arg = ft_get_info(av + 1);
@@ -71,6 +65,8 @@ int	main(int ac, char **av)
 	arg->forks = ft_init_forks(arg);
 	if (!arg->forks)
 		return (ft_putstr_fd("Error\n", 2), 1);
+	pthread_mutex_init(&arg->finish_mutex, NULL);
+	arg->finish = 0;
 	ft_get_arg(arg);
 	arg->philos = malloc(sizeof(pthread_t) * (arg->number_philo + 1));
 	if (!arg->philos)

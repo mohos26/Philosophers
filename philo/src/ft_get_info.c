@@ -6,7 +6,7 @@
 /*   By: mhoussas <mhoussas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/25 11:41:03 by mhoussas          #+#    #+#             */
-/*   Updated: 2025/05/04 11:06:19 by mhoussas         ###   ########.fr       */
+/*   Updated: 2025/05/05 16:18:16 by mhoussas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ t_all	*ft_get_info(char **av)
 	{
 		arg->number_philo_must_eat = ft_atoi(av[4]);
 		if (arg->number_philo_must_eat == -1)
-		return (free(arg), NULL);
+			return (free(arg), NULL);
 	}
 	return (arg);
 }
