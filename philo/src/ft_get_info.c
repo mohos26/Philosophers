@@ -6,7 +6,7 @@
 /*   By: mhoussas <mhoussas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/25 11:41:03 by mhoussas          #+#    #+#             */
-/*   Updated: 2025/05/06 09:06:45 by mhoussas         ###   ########.fr       */
+/*   Updated: 2025/05/06 10:53:48 by mhoussas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,12 +20,11 @@ t_all	*ft_get_info(char **av)
 	if (!arg)
 		return (free(arg), NULL);
 	arg->number_philo = ft_atoi(av[0]);
-	if (arg->number_philo == -1 || arg->number_philo > 200)
+	if (arg->number_philo < 1 || arg->number_philo > 200)
 		return (free(arg), NULL);
 	arg->time_die = ft_atoi(av[1]);
 	if (arg->time_die == -1)
 		return (free(arg), NULL);
-	arg->time_die += 50;
 	arg->time_eat = ft_atoi(av[2]);
 	if (arg->time_eat == -1)
 		return (free(arg), NULL);

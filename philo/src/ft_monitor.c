@@ -6,7 +6,7 @@
 /*   By: mhoussas <mhoussas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/26 11:43:57 by mhoussas          #+#    #+#             */
-/*   Updated: 2025/05/06 08:19:42 by mhoussas         ###   ########.fr       */
+/*   Updated: 2025/05/06 10:24:47 by mhoussas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ void	*ft_monitor(void *data)
 			pthread_mutex_unlock(&arg->meal_mutex);
 			i++;
 		}
-		usleep(1000);
+		usleep(100);
 	}
 	return (NULL);
 }
