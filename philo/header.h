@@ -6,7 +6,7 @@
 /*   By: mhoussas <mhoussas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/25 11:29:40 by mhoussas          #+#    #+#             */
-/*   Updated: 2025/05/05 19:28:32 by mhoussas         ###   ########.fr       */
+/*   Updated: 2025/05/06 09:02:33 by mhoussas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,9 @@ typedef struct s_all
 	pthread_t		*philos;
 	pthread_t		*monitor;
 	pthread_mutex_t	finish_mutex;
+	pthread_mutex_t	print_mutex;
 	int				finish;
+	int				died_flag;
 }					t_all;
 
 int		ft_atoi(char *s);
@@ -43,5 +45,6 @@ void	ft_putendl_fd(char *s, int fd);
 void	*ft_philos(void *n);
 void	ft_putchar_fd(char c, int fd);
 void	*ft_monitor(void *data);
-
+int		ft_finsh_check(t_all *arg);
+int		ft_died_check(t_all *arg);
 #endif

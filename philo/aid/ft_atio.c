@@ -6,7 +6,7 @@
 /*   By: mhoussas <mhoussas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/10 14:17:40 by mhoussas          #+#    #+#             */
-/*   Updated: 2025/04/26 19:58:32 by mhoussas         ###   ########.fr       */
+/*   Updated: 2025/05/06 08:56:44 by mhoussas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@ static int	ft_is_number(char *s)
 {
 	long	n;
 
+	if (!s)
+		return (0);
 	while (*s == ' ')
 		s++;
 	if (*s == '+')

@@ -6,7 +6,7 @@
 /*   By: mhoussas <mhoussas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/25 11:31:36 by mhoussas          #+#    #+#             */
-/*   Updated: 2025/05/05 19:39:30 by mhoussas         ###   ########.fr       */
+/*   Updated: 2025/05/06 09:03:13 by mhoussas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,9 @@ static void	ft_aid(t_all *arg)
 	i = 0;
 	while (i < arg->number_philo)
 		pthread_mutex_destroy(&arg->forks[i++]);
+	pthread_mutex_destroy(&arg->meal_mutex);
+	pthread_mutex_destroy(&arg->finish_mutex);
+	pthread_mutex_destroy(&arg->print_mutex);
 }
 
 int	main(int ac, char **av)
@@ -66,7 +69,7 @@ int	main(int ac, char **av)
 	if (!arg->forks)
 		return (ft_putstr_fd("Error\n", 2), 1);
 	pthread_mutex_init(&arg->finish_mutex, NULL);
-	arg->finish = 0;
+	pthread_mutex_init(&arg->print_mutex, NULL);
 	ft_get_arg(arg);
 	arg->philos = malloc(sizeof(pthread_t) * (arg->number_philo + 1));
 	if (!arg->philos)

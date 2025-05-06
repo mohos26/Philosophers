@@ -6,7 +6,7 @@
 /*   By: mhoussas <mhoussas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/26 11:43:57 by mhoussas          #+#    #+#             */
-/*   Updated: 2025/05/05 19:57:11 by mhoussas         ###   ########.fr       */
+/*   Updated: 2025/05/06 08:19:42 by mhoussas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,18 @@ static int	ft_aid(t_all *arg, int id)
 	now = ft_get_time();
 	if (now - arg->last_meal[id] >= arg->time_die)
 	{
+		pthread_mutex_lock(&arg->print_mutex);
+		arg->died_flag = 1;
+		pthread_mutex_unlock(&arg->print_mutex);
 		i = 0;
 		while (i < arg->number_philo)
 			pthread_detach(arg->philos[i++]);
+		pthread_mutex_lock(&arg->print_mutex);
 		printf("%ld %d died\n", now - ft_start(1), id + 1);
+		i = 0;
+		while (i < arg->number_philo)
+			pthread_join(arg->philos[i++], NULL);
+		pthread_mutex_unlock(&arg->print_mutex);
 		return (0);
 	}
 	return (1);
@@ -37,18 +45,13 @@ void	*ft_monitor(void *data)
 
 	flag = 1;
 	arg = (t_all *)data;
-	while (flag)
+	while (flag && ft_finsh_check(arg))
 	{
 		i = 0;
 		while (flag && i < arg->number_philo)
 		{
-			pthread_mutex_lock(&arg->finish_mutex);
-			if (arg->finish)
-			{
-				pthread_mutex_unlock(&arg->finish_mutex);
+			if (!ft_finsh_check(arg))
 				return (NULL);
-			}
-			pthread_mutex_unlock(&arg->finish_mutex);
 			pthread_mutex_lock(&arg->meal_mutex);
 			flag = ft_aid(arg, i);
 			pthread_mutex_unlock(&arg->meal_mutex);

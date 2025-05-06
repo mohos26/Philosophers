@@ -6,7 +6,7 @@
 /*   By: mhoussas <mhoussas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/25 11:41:03 by mhoussas          #+#    #+#             */
-/*   Updated: 2025/05/05 16:18:16 by mhoussas         ###   ########.fr       */
+/*   Updated: 2025/05/06 09:06:45 by mhoussas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,18 +25,17 @@ t_all	*ft_get_info(char **av)
 	arg->time_die = ft_atoi(av[1]);
 	if (arg->time_die == -1)
 		return (free(arg), NULL);
+	arg->time_die += 50;
 	arg->time_eat = ft_atoi(av[2]);
 	if (arg->time_eat == -1)
 		return (free(arg), NULL);
 	arg->time_sleep = ft_atoi(av[3]);
 	if (arg->time_sleep == -1)
 		return (free(arg), NULL);
-	arg->number_philo_must_eat = -1;
-	if (av[4])
-	{
-		arg->number_philo_must_eat = ft_atoi(av[4]);
-		if (arg->number_philo_must_eat == -1)
-			return (free(arg), NULL);
-	}
+	arg->number_philo_must_eat = ft_atoi(av[4]);
+	if (arg->number_philo_must_eat == -1 && av[4])
+		return (free(arg), NULL);
+	arg->finish = 0;
+	arg->died_flag = 0;
 	return (arg);
 }
