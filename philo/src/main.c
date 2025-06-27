@@ -6,7 +6,7 @@
 /*   By: mhoussas <mhoussas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/25 11:31:36 by mhoussas          #+#    #+#             */
-/*   Updated: 2025/05/06 09:03:13 by mhoussas         ###   ########.fr       */
+/*   Updated: 2025/05/26 10:58:21 by mhoussas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 static pthread_mutex_t	*ft_init_forks(t_all *arg)
 {
-	pthread_mutex_t	*forks;
 	int				i;
+	pthread_mutex_t	*forks;
 
 	forks = malloc(sizeof(pthread_mutex_t) * (arg->number_philo + 1));
 	if (!forks)
@@ -26,7 +26,7 @@ static pthread_mutex_t	*ft_init_forks(t_all *arg)
 	return (forks);
 }
 
-static void	ft_aid(t_all *arg)
+static void	ft_run_simulation(t_all *arg)
 {
 	pthread_t	monitor;
 	int			ids[200];
@@ -56,28 +56,28 @@ static void	ft_aid(t_all *arg)
 
 int	main(int ac, char **av)
 {
-	t_all		*arg;
 	int			i;
+	t_all		*arg;
 
 	if (!(ac == 5 || ac == 6))
 		return (ft_putendl_fd("!!! Invalide Number Of Arguments !!!", 2), 1);
 	arg = ft_get_info(av + 1);
 	if (!arg)
-		return (ft_putstr_fd("Error\n", 2), 1);
+		return (ft_putstr_fd("!!! Invalide Arguments !!!\n", 2), 1);
 	pthread_mutex_init(&arg->meal_mutex, NULL);
 	arg->forks = ft_init_forks(arg);
 	if (!arg->forks)
-		return (ft_putstr_fd("Error\n", 2), 1);
+		return (ft_putstr_fd("Malloc Error\n", 2), 1);
 	pthread_mutex_init(&arg->finish_mutex, NULL);
 	pthread_mutex_init(&arg->print_mutex, NULL);
 	ft_get_arg(arg);
 	arg->philos = malloc(sizeof(pthread_t) * (arg->number_philo + 1));
 	if (!arg->philos)
-		return (ft_putstr_fd("Error\n", 2), 1);
+		return (ft_putstr_fd("Malloc Error\n", 2), 1);
 	ft_start(0);
 	i = 0;
 	while (i < arg->number_philo)
 		arg->last_meal[i++] = ft_start(1);
-	ft_aid(arg);
+	ft_run_simulation(arg);
 	return (0);
 }

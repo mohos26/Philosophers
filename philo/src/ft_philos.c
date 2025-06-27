@@ -6,7 +6,7 @@
 /*   By: mhoussas <mhoussas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/26 09:53:01 by mhoussas          #+#    #+#             */
-/*   Updated: 2025/05/06 09:07:21 by mhoussas         ###   ########.fr       */
+/*   Updated: 2025/05/26 10:55:04 by mhoussas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,9 +39,13 @@ static void	ft_eating(t_all *arg, long start, int id)
 		pthread_mutex_unlock(&arg->print_mutex);
 	}
 	pthread_mutex_lock(&arg->meal_mutex);
+	arg->is_eating[id -1] = 1;
 	arg->last_meal[id -1] = ft_get_time();
 	pthread_mutex_unlock(&arg->meal_mutex);
 	usleep(arg->time_eat * 1000);
+	pthread_mutex_lock(&arg->meal_mutex);
+	arg->is_eating[id -1] = 0;
+	pthread_mutex_unlock(&arg->meal_mutex);
 	pthread_mutex_unlock(&arg->forks[left]);
 	pthread_mutex_unlock(&arg->forks[rigth]);
 }
@@ -76,10 +80,11 @@ void	*ft_philos(void *n)
 
 	arg = ft_get_arg(NULL);
 	id = *(int *)n + 1;
+	arg->is_eating[id - 1] = 0;
 	i = 0;
 	start = ft_start(1);
 	if (!(id % 2))
-		usleep(arg->time_die);
+		usleep(1000);
 	while (i++ != arg->number_philo_must_eat)
 	{
 		if (!ft_died_check(arg))
